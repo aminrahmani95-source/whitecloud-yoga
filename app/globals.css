@@ -1,0 +1,148 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+/*
+ * توکن‌های طراحی ابر سفید.
+ * تنها منبع حقیقت برای رنگ و تایپوگرافی — جای دیگری رنگ خام ننویسید.
+ * مستندات و نسبت‌های کنتراست: DESIGN.md
+ */
+@theme {
+  /* ---- سطوح ---- */
+  --color-bg: #faf8f4; /* پس‌زمینهٔ اصلی — سفید شکری */
+  --color-surface: #f0ebe3; /* کارت‌ها و سطح دوم — بژ روشن */
+  --color-line: #e3dcd2; /* خطوط مویی و حاشیه‌ها */
+
+  /* ---- متن ---- */
+  --color-ink: #3a3632; /* متن اصلی      — ۱۱٫۳:۱ روی bg */
+  --color-muted: #6f675e; /* متن ثانویه    — ۵٫۲:۱ روی bg، ۴٫۷:۱ روی surface */
+  --color-subtle: #8a8178; /* فقط متن درشت — برای متن معمولی استفاده نشود */
+
+  /* ---- لهجهٔ آبی ----
+   * تفکیک نقش عمدی است: آبی روشن هرگز خودش متن نیست، فقط پُرکننده است.
+   * جزئیات کامل در DESIGN.md بخش «چرا چهار آبی». */
+  --color-sky: #a8c4d4; /* پُرکنندهٔ دکمه/بج — با متن ink روی آن ۶٫۶:۱ */
+  --color-sky-hover: #94b5c8; /* هاورِ همان پُرکننده — با ink ۵٫۵:۱ */
+  --color-sky-deep: #7ba0b5; /* فقط تزئینی: خط، حاشیه، آیکون. متن نه. */
+  --color-sky-text: #3f6880; /* آبی در نقش متن: لینک — ۵٫۷:۱ روی bg */
+
+  /* ---- تایپوگرافی ---- */
+  --font-sans: "Estedad", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- گوشه‌های نرم ---- */
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+
+  /* ---- سایه‌های خیلی ملایم ---- */
+  --shadow-soft: 0 1px 2px rgb(58 54 50 / 0.04), 0 8px 24px rgb(58 54 50 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(58 54 50 / 0.05), 0 16px 40px rgb(58 54 50 / 0.09);
+}
+
+/*
+ * سایهٔ ابرهای صفحهٔ ورودی — ته‌رنگ آبی می‌گیرد تا با خود ابر یکی باشد و
+ * مثل سایهٔ خاکستری، کدر و جدا از صحنه ننشیند.
+ */
+@utility cloud-shadow {
+  filter: drop-shadow(0 6px 18px rgb(123 160 181 / 0.22))
+    drop-shadow(0 2px 4px rgb(123 160 181 / 0.14));
+}
+
+@utility cloud-shadow-lift {
+  filter: drop-shadow(0 14px 32px rgb(123 160 181 / 0.38))
+    drop-shadow(0 3px 6px rgb(123 160 181 / 0.18));
+}
+
+/* شناوری آرام و بی‌وقفهٔ ابرها */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(var(--drift-x, 6px), var(--drift-y, -14px), 0);
+  }
+}
+
+/*
+ * عبور آرام ابرها از عرض صفحه.
+ * ۱۱۰vw در هر دو سو یعنی ابر پیش از بازگشت کاملاً از کادر بیرون می‌رود، پس
+ * هیچ‌وقت وسط صفحه ظاهر یا ناپدید نمی‌شود.
+ */
+@keyframes drift-across {
+  from {
+    transform: translate3d(110vw, 0, 0);
+  }
+  to {
+    transform: translate3d(-110vw, 0, 0);
+  }
+}
+
+/* ظاهر شدن نرم هنگام اسکرول */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* هدر چسبان نباید روی تیتر بخشی که به آن پرش شده بیفتد */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* حلقهٔ فوکوس یکدست و قابل دیدن برای پیمایش با کیبورد */
+  :focus-visible {
+    outline: 2px solid var(--color-sky-text);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  /* اعداد فارسی در جدول برنامه هم‌عرض بمانند تا ستون‌ها نلرزند */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/*
+ * احترام به تنظیم سیستمیِ کاهش حرکت.
+ * کاربری که این را روشن کرده معمولاً با انیمیشن دچار سرگیجه می‌شود؛
+ * ابرها ثابت می‌مانند ولی همه‌چیز کاملاً قابل استفاده باقی می‌ماند.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /*
+   * ابرهای شناور استثنا هستند و باید کاملاً خاموش شوند، نه صفر-ثانیه‌ای.
+   * قاعدهٔ بالا انیمیشن را آنی می‌کند، یعنی ابر می‌پرد به فریم آخرِ
+   * drift-across — که ۱۱۰vw بیرون کادر است و ابر ناپدید می‌شود.
+   * با animation:none هر ابر سر جای ثابت خودش (مکان left) می‌ماند.
+   */
+  .ambient-cloud {
+    animation: none !important;
+  }
+}
