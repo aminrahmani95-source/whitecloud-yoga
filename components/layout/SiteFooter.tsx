@@ -114,9 +114,19 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col-reverse items-center gap-4 border-t border-line pt-6 sm:flex-row sm:justify-between">
-          <p className="text-sm text-muted">
-            © {contact.name} — تمام حقوق محفوظ است.
-          </p>
+          <div className="space-y-1 text-center sm:text-start">
+            <p className="text-sm text-muted">
+              © {contact.name} — تمام حقوق محفوظ است.
+            </p>
+            {/*
+              نام لاتین داخل جملهٔ فارسی: با bdi مرزش برای الگوریتم دوجهته
+              مشخص می‌شود، وگرنه اگر روزی نقطه یا کاراکتر دیگری بعدش بیاید
+              جای آن در خط جابه‌جا می‌شود.
+            */}
+            <p className="text-sm text-muted">
+              طراحی و توسعه توسط <bdi>Artvoid Company</bdi>
+            </p>
+          </div>
           <Cloud className="w-11 text-sky-deep/50" />
         </div>
       </div>
