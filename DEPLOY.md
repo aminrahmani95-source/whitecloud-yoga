@@ -34,3 +34,9 @@ https://aminrahmani95-source.github.io/whitecloud-yoga/
 
 اگر مرحلهٔ ۱ را فراموش کنید، همهٔ نشانی‌ها یک `/whitecloud-yoga` اضافه
 می‌گیرند و CSS و فونت‌ها ۴۰۴ می‌شوند.
+
+## نشانی‌های canonical
+
+`metadataBase` در `app/layout.tsx` از متغیر `PAGES_SITE_URL` خوانده می‌شود و
+canonical همهٔ صفحه‌ها از روی آن ساخته می‌شود. با تغییر دامنه فقط همان یک
+متغیر در ورک‌فلو باید عوض شود؛ لازم نیست تک‌تک صفحه‌ها را دست بزنید.

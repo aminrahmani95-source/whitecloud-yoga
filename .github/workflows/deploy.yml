@@ -38,6 +38,9 @@ jobs:
           # بدون این، همهٔ CSS و فونت‌ها ۴۰۴ می‌شوند.
           # با وصل شدن دامنهٔ اختصاصی این خط باید حذف شود — راهنما: DEPLOY.md
           PAGES_BASE_PATH: /whitecloud-yoga
+          # پایهٔ نشانی‌های canonical و OpenGraph.
+          # با دامنهٔ اختصاصی، این را به https://your-domain.ir عوض کنید.
+          PAGES_SITE_URL: https://aminrahmani95-source.github.io/whitecloud-yoga
         run: npm run build
 
       - name: بررسی سلامت خروجی

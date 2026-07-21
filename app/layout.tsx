@@ -4,7 +4,21 @@ import "./globals.css";
 // نکته: عمداً از next/font/google استفاده نمی‌کنیم — موقع build به سرور گوگل
 // وصل می‌شود. فونت استعداد به‌صورت لوکال در app/fonts.css تعریف شده است.
 
+/**
+ * پایهٔ همهٔ نشانی‌های مطلق در متادیتا (canonical و OpenGraph).
+ *
+ * بدون این، canonical صفحه‌ها به شکل «/studio/» تولید می‌شود که فقط وقتی
+ * درست است که سایت روی ریشهٔ دامنه باشد. الان زیر زیرمسیرِ نام مخزن است،
+ * پس آن نشانی وجود ندارد و گوگل را به ۴۰۴ می‌فرستد.
+ *
+ * مقدارش در CI ست می‌شود (.github/workflows/deploy.yml). با وصل شدن دامنهٔ
+ * اختصاصی فقط کافی است همان‌جا عوضش کنید — راهنما: DEPLOY.md
+ */
+const siteUrl =
+  process.env.PAGES_SITE_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "استودیو یوگا ابر سفید | باشگاه بانوان در کرج، مهرویلا",
     template: "%s | ابر سفید",
