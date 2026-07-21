@@ -1,0 +1,62 @@
+name: انتشار روی GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # امکان اجرای دستی از تب Actions
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# اگر چند push پشت سر هم آمد، فقط آخری منتشر شود.
+# cancel-in-progress عمداً false است: نصفه‌کاره لغو کردن یک انتشار
+# می‌تواند سایت را در وضعیت ناقص رها کند.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: نصب وابستگی‌ها
+        run: npm ci
+
+      - name: ساخت خروجی استاتیک
+        env:
+          # سایت زیر زیرمسیرِ نام مخزن سِرو می‌شود، نه ریشه.
+          # بدون این، همهٔ CSS و فونت‌ها ۴۰۴ می‌شوند.
+          # با وصل شدن دامنهٔ اختصاصی این خط باید حذف شود — راهنما: DEPLOY.md
+          PAGES_BASE_PATH: /whitecloud-yoga
+        run: npm run build
+
+      - name: بررسی سلامت خروجی
+        run: |
+          test -f out/index.html || { echo "::error::صفحهٔ اصلی ساخته نشد"; exit 1; }
+          test -f out/studio/index.html || { echo "::error::صفحهٔ باشگاه ساخته نشد"; exit 1; }
+          test -f out/.nojekyll || { echo "::error::.nojekyll نیست — GitHub Pages پوشه‌های _next را نادیده می‌گیرد"; exit 1; }
+          echo "خروجی سالم است: $(find out -name '*.html' | wc -l) صفحهٔ HTML"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
