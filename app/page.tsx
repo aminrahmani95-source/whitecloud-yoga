@@ -1,6 +1,5 @@
 import { CloudGate } from "@/components/splash/CloudGate";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { contact } from "@/lib/data/contact";
 import { styles } from "@/lib/data/styles";
 
 /**
@@ -23,37 +22,33 @@ export default function LandingPage() {
         از همان دو ابر انجام می‌شود، پس اینجا دکمهٔ ورود گذاشته نشده.
       */}
       <section id="about" className="border-t border-line bg-surface/40">
-        <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8">
+        {/* py-20 sm:py-24 همان پلهٔ پنجم نردبان فاصله است (Section.tsx) —
+            پیش از این sm:py-24 نداشت و این بخش روی نمایشگر بزرگ از بقیهٔ
+            بخش‌های سایت کوتاه‌تر می‌نشست. measure هم ستون متن را از ۹۷ نویسه
+            در هر سطر به حدود ۸۰ می‌آورد. */}
+        <div className="measure mx-auto px-5 py-20 sm:px-8 sm:py-24">
           <h2 className="text-xl font-semibold leading-snug text-ink sm:text-2xl">
             استودیو یوگای ابر سفید، در مهرویلای کرج
           </h2>
 
-          <div className="mt-5 space-y-4 leading-loose text-muted">
+          <div className="mt-6 space-y-4 leading-loose text-muted">
             <p>
-              ابر سفید یک باشگاه تخصصی یوگا برای بانوان است؛ فضایی آرام و کم‌شلوغ
-              که در آن می‌توانید بی‌عجله تمرین کنید. کلاس‌ها در گروه‌های کوچک
-              برگزار می‌شود تا مربی فرصت داشته باشد به هر نفر جداگانه برسد.
+              ابر سفید باشگاه یوگای بانوان است؛ سالنی آرام و کم‌شلوغ که در آن
+              بی‌عجله تمرین می‌کنید. کلاس‌ها کوچک نگه داشته می‌شوند تا مربی وقت
+              داشته باشد کنار هرکدام‌تان بایستد و وضعیت‌ها را تنظیم کند.
             </p>
             <p>
-              چه تازه شروع کرده باشید و چه سال‌ها تمرین کرده باشید، کلاسی متناسب
-              با سطح شما هست. سبک‌هایی که ارائه می‌کنیم:{" "}
+              چه اولین بارتان باشد و چه سال‌ها تمرین کرده باشید، کلاسی به اندازهٔ
+              شما هست. سبک‌هایی که برگزار می‌کنیم:{" "}
               {styles.map((s) => s.name).join("، ")}.
             </p>
-            <p>
-              استودیو در {contact.address.city}، {contact.address.district} قرار
-              دارد — {contact.address.line}. برای مشاوره و ثبت‌نام می‌توانید با
-              شمارهٔ{" "}
-              <a
-                href={contact.phone.href}
-                className="tabular font-medium text-sky-text underline-offset-4 hover:underline"
-                dir="ltr"
-              >
-                {contact.phone.display}
-              </a>{" "}
-              تماس بگیرید.
-            </p>
+            {/*
+              پاراگراف نشانی و تلفن عمداً اینجا نیست: هر دو چند صد پیکسل
+              پایین‌تر، در فوترِ همین صفحه و با آیکون می‌آیند. تکرارشان وسط
+              متن معرفی هم زائد بود و هم همان جایی بود که شماره ته سطر
+              می‌افتاد و جملهٔ بعدش به خط بعد می‌رفت.
+            */}
           </div>
-
         </div>
       </section>
 

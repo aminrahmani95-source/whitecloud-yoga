@@ -4,6 +4,8 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { ClockIcon, InstagramIcon, PinIcon } from "@/components/ui/Icon";
+import { PhoneNumber } from "@/components/ui/PhoneNumber";
 import { Intro } from "@/components/studio/Intro";
 import { News } from "@/components/studio/News";
 import { CloudField } from "@/components/splash/CloudField";
@@ -16,7 +18,7 @@ import { weekSchedule } from "@/lib/data/schedule";
 export const metadata: Metadata = {
   title: "باشگاه",
   description:
-    "خانهٔ باشگاه بانوان ابر سفید در کرج، مهرویلا — از این‌جا سراغ سبک‌های کلاس، برنامهٔ هفتگی، مربیان و تعرفه‌ها بروید و تازه‌های استودیو را ببینید.",
+    "خانهٔ باشگاه بانوان ابر سفید در کرج، مهرویلا — سبک‌های کلاس، برنامهٔ هفتگی، معرفی مربیان، تعرفه‌ها و تازه‌های استودیو.",
   alternates: { canonical: "/studio/" },
 };
 
@@ -45,25 +47,25 @@ const destinations: { href: string; label: string; description: string }[] = [
     label: "کلاس‌ها",
     description: `${fa(
       styles.length,
-    )} سبک یوگا، از هاتای آرام تا آشتانگای پرنظم — ببینید کدام‌یک به بدن و حالِ این روزهای شما می‌خورد.`,
+    )} سبک یوگا، از هاتای کند تا آشتانگای منظم — با ریتم و مخاطب هرکدام، تا ببینید کدام به این روزهای شما می‌خورد.`,
   },
   {
     href: "/studio/schedule/",
     label: "برنامهٔ هفتگی",
-    description: `ساعت کلاس‌های ${firstDay} تا ${lastDay}، همراه با سطح هر جلسه و نام مربی‌ای که آن را می‌گیرد.`,
+    description: `ساعت کلاس‌های ${firstDay} تا ${lastDay}، همراه با سطح هر جلسه، نام مربی و ظرفیتش.`,
   },
   {
     href: "/studio/teachers/",
     label: "مربیان",
     description: `${fa(
       instructors.length,
-    )} مربی استودیو، هرکدام با تمرین و لحن خودشان — پیش از اولین جلسه با آن‌ها آشنا شوید.`,
+    )} مربی با چهار جور کلاس — پیش از اولین جلسه ببینید هرکدام کلاس را چطور پیش می‌برند.`,
   },
   {
     href: "/studio/pricing/",
     label: "تعرفه‌ها",
     description:
-      "جلسهٔ آشنایی رایگان، تک‌جلسه و بسته‌های ماهانه؛ شرط‌های هر بسته بدون ستارهٔ ریز.",
+      "جلسهٔ آشنایی رایگان، تک‌جلسه و بسته‌های ماهانه — با شرط‌های هر بسته، بدون ستارهٔ ریز.",
   },
 ];
 
@@ -81,42 +83,6 @@ function ArrowStart() {
       className="h-4 w-4 shrink-0 text-sky-deep"
     >
       <path d="M11.5 4.5 6 10l5.5 5.5" />
-    </svg>
-  );
-}
-
-function PinIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className="mt-0.5 h-4 w-4 shrink-0 text-sky-deep"
-    >
-      <path d="M10 17.5s5.5-4.6 5.5-9a5.5 5.5 0 1 0-11 0c0 4.4 5.5 9 5.5 9Z" />
-      <circle cx="10" cy="8.5" r="1.9" />
-    </svg>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className="mt-0.5 h-4 w-4 shrink-0 text-sky-deep"
-    >
-      <circle cx="10" cy="10" r="7.25" />
-      <path d="M10 5.75V10l2.75 1.75" />
     </svg>
   );
 }
@@ -151,7 +117,7 @@ export default function StudioHomePage() {
           <SectionHeading
             eyebrow="کجا برویم"
             title="از این‌جا شروع کنید"
-            lead="چهار صفحه‌ای که معمولاً پیش از اولین جلسه سراغ‌شان می‌روند — هرکدام یک قدم از راه را روشن می‌کند."
+            lead="چهار صفحه‌ای که معمولاً پیش از اولین جلسه سراغ‌شان می‌روند. هرکدام یک قدم از راه را روشن می‌کند."
           />
 
           {/*
@@ -191,7 +157,7 @@ export default function StudioHomePage() {
           <SectionHeading
             eyebrow="تماس"
             title="سری به ما بزنید"
-            lead="برای ثبت‌نام یا هر سؤالی که ماندنی شده، یک تماس کوتاه کافی است. ثبت‌نام آنلاین نداریم و همه‌چیز تلفنی یا حضوری انجام می‌شود."
+            lead="ثبت‌نام آنلاین نداریم؛ همه‌چیز تلفنی یا حضوری انجام می‌شود. برای گرفتن جا یا پرسیدن سؤالی که ماندنی شده، یک تماس کوتاه کافی است."
           />
 
           <div className="rounded-2xl border border-line bg-surface p-6 shadow-soft sm:p-8">
@@ -201,14 +167,14 @@ export default function StudioHomePage() {
                 <h3 className="text-base font-semibold text-ink">نشانی استودیو</h3>
 
                 <p className="mt-4 flex gap-x-2.5 text-sm leading-loose text-muted">
-                  <PinIcon />
+                  <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-sky-deep" />
                   <span>
                     {contact.address.full}
                   </span>
                 </p>
 
                 <p className="mt-3 flex gap-x-2.5 text-sm leading-loose text-muted">
-                  <ClockIcon />
+                  <ClockIcon className="mt-0.5 h-4 w-4 shrink-0 text-sky-deep" />
                   <span>
                     {contact.hours.days}، {contact.hours.opens}
                   </span>
@@ -228,11 +194,11 @@ export default function StudioHomePage() {
               {/* ستون تماس */}
               <div>
                 <h3 className="text-base font-semibold text-ink">
-                  در دسترس‌ترین راه
+                  راه‌های تماس
                 </h3>
 
                 <p className="mt-4 text-sm leading-loose text-muted">
-                  تلفن استودیو در ساعت کار پاسخ داده می‌شود؛ اگر ترجیح می‌دهید
+                  تلفن استودیو در ساعت کار جواب داده می‌شود. اگر ترجیح می‌دهید
                   بنویسید، دایرکت اینستاگرام هم باز است.
                 </p>
 
@@ -255,9 +221,7 @@ export default function StudioHomePage() {
                     >
                       <path d="M5.5 2.5H3.2c-.4 0-.7.3-.7.7C2.5 9 7 13.5 12.8 13.5c.4 0 .7-.3.7-.7v-2.3l-2.6-.9-1.3 1.3a9.4 9.4 0 01-3.5-3.5l1.3-1.3-.9-2.6z" />
                     </svg>
-                    <span className="tabular" dir="ltr">
-                      {contact.phone.display}
-                    </span>
+                    <PhoneNumber />
                   </a>
 
                   <a
@@ -267,20 +231,7 @@ export default function StudioHomePage() {
                     aria-label={`اینستاگرام استودیو، ${contact.instagram.display}`}
                     className="inline-flex w-full items-center justify-center gap-2.5 rounded-full border border-line px-6 py-3.5 text-base font-medium text-sky-text transition-colors duration-300 hover:bg-bg sm:w-auto"
                   >
-                    <svg
-                      viewBox="0 0 20 20"
-                      className="h-4 w-4 shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="3" y="3" width="14" height="14" rx="4.25" />
-                      <circle cx="10" cy="10" r="3.25" />
-                      <circle cx="14.1" cy="5.9" r="0.85" fill="currentColor" stroke="none" />
-                    </svg>
+                    <InstagramIcon />
                     {/*
                      * شناسه در موبایل کوتاه می‌شود تا دکمه از عرض ۳۷۵ بیرون
                      * نزند؛ روی نمایشگر بزرگ‌تر کامل دیده می‌شود.

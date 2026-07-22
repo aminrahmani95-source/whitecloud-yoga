@@ -1,5 +1,13 @@
 import Link from "next/link";
 import { Cloud } from "@/components/brand/Cloud";
+import { PhoneLink } from "@/components/ui/PhoneNumber";
+import {
+  ClockIcon,
+  ExternalIcon,
+  InstagramIcon,
+  PhoneIcon,
+  PinIcon,
+} from "@/components/ui/Icon";
 import { contact } from "@/lib/data/contact";
 import { siteMap } from "@/lib/nav";
 
@@ -25,12 +33,21 @@ export function SiteFooter() {
               <h2 className="mb-3 text-sm font-semibold text-ink">
                 {column.title}
               </h2>
-              <ul className="space-y-2">
+              {/*
+                فاصلهٔ فهرست از space-y-2 به space-y-0.5 آمده و در عوض خودِ
+                پیوند padding عمودی گرفته. مجموع ارتفاع هر ردیف تقریباً همان
+                است، ولی حالا تمام آن ارتفاع سطح لمس است نه فقط خط متن —
+                پیش از این هدف‌ها ۲۱٫۵ پیکسل بودند، زیر حداقل ۲۴ پیکسلیِ
+                WCAG 2.5.8 و خیلی زیر چیزی که با شست بشود زد.
+                منفیِ افقی (-mx-2) هم سطح لمس را پهن می‌کند بی‌آنکه ستون از
+                تراز چپش بیرون بزند.
+              */}
+              <ul className="space-y-0.5">
                 {column.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted underline-offset-4 transition-colors hover:text-ink hover:underline"
+                      className="-mx-2 block px-2 py-1.5 text-sm text-muted underline-offset-4 transition-colors hover:text-ink hover:underline"
                     >
                       {link.label}
                     </Link>
@@ -45,71 +62,74 @@ export function SiteFooter() {
         <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr]">
           <div>
             <h2 className="mb-3 text-sm font-semibold text-ink">نشانی استودیو</h2>
-            <address className="not-italic leading-loose text-muted">
-              {contact.address.city}، {contact.address.district}
-              <br />
-              {contact.address.line}
-              <br />
-              {contact.address.floor}
-            </address>
+            {/*
+              آیکون در بالای بلوک می‌نشیند نه وسط آن: نشانی سه سطر است و
+              آیکونِ وسط‌چین کنار سطر دوم می‌افتد که به چشم غلط می‌آید.
+              mt-1 آن را با خط اولِ متن هم‌تراز می‌کند.
+            */}
+            <div className="flex gap-x-2.5">
+              <PinIcon className="mt-1 h-4 w-4 shrink-0 text-sky-deep" />
+              <address className="not-italic leading-loose text-muted">
+                {contact.address.city}، {contact.address.district}
+                <br />
+                {contact.address.line}
+                <br />
+                {contact.address.floor}
+              </address>
+            </div>
+            {/* -mb-1.5 فقط padding اضافه‌شده را پس می‌گیرد تا فاصلهٔ دیداری
+                با بلوک بعدی همان mt-3 پله‌ی اول بماند */}
             <a
               href={contact.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-sky-text underline-offset-4 hover:underline"
+              className="mt-3 -mb-1.5 inline-flex items-center gap-1.5 py-1.5 ps-[26px] text-sm font-medium text-sky-text underline-offset-4 hover:underline"
             >
               مسیریابی روی نقشه
-              <svg
-                viewBox="0 0 16 16"
-                className="h-3.5 w-3.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M6 3H3v10h10v-3M9.5 2.5H13.5V6.5M13 3L7.5 8.5" />
-              </svg>
+              <ExternalIcon />
             </a>
           </div>
 
           <div>
             <h2 className="mb-3 text-sm font-semibold text-ink">تماس</h2>
-            <ul className="space-y-2.5 text-muted">
+            {/* مثل نقشهٔ سایت: فاصله از فهرست به خودِ پیوند منتقل شده تا
+                سطح لمس بزرگ شود و ریتم دیداری همان بماند */}
+            <ul className="space-y-0.5 text-muted">
               <li>
-                <a
-                  href={contact.phone.href}
-                  className="tabular text-sky-text underline-offset-4 hover:underline"
-                  dir="ltr"
-                >
-                  {contact.phone.display}
-                </a>
+                <span className="flex items-center gap-x-2.5">
+                  <PhoneIcon className="h-4 w-4 shrink-0 text-sky-deep" />
+                  <PhoneLink className="text-sky-text underline-offset-4 hover:underline" />
+                </span>
               </li>
               <li>
                 <a
                   href={contact.instagram.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sky-text underline-offset-4 hover:underline"
-                  dir="ltr"
+                  className="inline-flex items-center gap-x-2.5 py-1.5 text-sky-text underline-offset-4 hover:underline"
                 >
-                  {contact.instagram.display}
+                  <InstagramIcon className="h-4 w-4 shrink-0 text-sky-deep" />
+                  {/* نام کاربری لاتین داخل بافت راست‌به‌چپ — bdi مرزش را
+                      برای الگوریتم دوجهته مشخص می‌کند */}
+                  <bdi>{contact.instagram.display}</bdi>
                 </a>
               </li>
             </ul>
-            <p className="mt-4 text-sm leading-relaxed text-muted">
+            <p className="measure mt-3 text-sm leading-relaxed text-muted">
               برای ثبت‌نام و رزرو کلاس تماس بگیرید یا در دایرکت پیام بدهید.
             </p>
           </div>
 
           <div>
             <h2 className="mb-3 text-sm font-semibold text-ink">ساعت کار</h2>
-            <p className="leading-loose text-muted">
-              {contact.hours.days}
-              <br />
-              {contact.hours.opens}
-            </p>
+            <div className="flex gap-x-2.5">
+              <ClockIcon className="mt-1 h-4 w-4 shrink-0 text-sky-deep" />
+              <p className="leading-loose text-muted">
+                {contact.hours.days}
+                <br />
+                {contact.hours.opens}
+              </p>
+            </div>
           </div>
         </div>
 

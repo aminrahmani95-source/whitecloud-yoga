@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/ui/Section";
+import { PhoneNumber } from "@/components/ui/PhoneNumber";
 import { faqs } from "@/lib/data/faq";
 import { contact } from "@/lib/data/contact";
 
 export const metadata: Metadata = {
   title: "سؤال‌های پرتکرار",
   description:
-    "پاسخ سؤال‌های رایج دربارهٔ کلاس‌های استودیو یوگا ابر سفید در کرج، مهرویلا — از انتخاب کلاس مبتدی و لباس مناسب تا تمرین در دوران بارداری و قاعدگی و نحوهٔ ثبت‌نام.",
+    "پاسخ سؤال‌های رایج دربارهٔ کلاس‌های باشگاه بانوان ابر سفید در کرج، مهرویلا — از انعطاف و انتخاب کلاس مبتدی و لباس مناسب تا تمرین در دوران بارداری و قاعدگی و نحوهٔ ثبت‌نام.",
   alternates: { canonical: "/studio/faq/" },
 };
 
@@ -23,8 +24,8 @@ export default function FaqPage() {
   return (
     <PageShell
       eyebrow="سؤال‌های پرتکرار"
-      title="پیش از اولین کلاس، چه چیزهایی خوب است بدانید؟"
-      lead="هر چه بیشتر پرسیده شده را اینجا جمع کرده‌ایم؛ از «انعطاف ندارم» تا لباس و وسایل و ثبت‌نام. روی هر سؤال بزنید تا پاسخش باز شود."
+      title="چیزهایی که خوب است پیش از اولین کلاس بدانید"
+      lead="هرچه بیشتر از ما پرسیده‌اند این‌جا جمع است؛ از «انعطاف ندارم» تا لباس و وسایل و ثبت‌نام. روی هر سؤال بزنید تا پاسخش باز شود."
     >
       <Section>
         {/*
@@ -91,12 +92,12 @@ export default function FaqPage() {
       <Section className="pt-0">
         <div className="rounded-2xl bg-surface p-7 shadow-soft sm:p-10">
           <h2 className="text-xl font-semibold leading-snug text-ink sm:text-2xl">
-            سؤال‌تان اینجا نبود؟
+            سؤال‌تان این‌جا نبود؟
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-loose text-muted sm:text-base">
-            بپرسید؛ همین که تماس بگیرید یا پیام بدهید کافی است. اگر دربارهٔ
-            شرایط جسمی خاصی تردید دارید، بهتر است پیش از ثبت‌نام تلفنی صحبت
-            کنیم تا کلاس مناسب‌تان را با هم انتخاب کنیم.
+            بپرسید. یک تماس یا یک پیام کافی است. اگر دربارهٔ شرایط جسمی خاصی
+            تردید دارید، بهتر است پیش از ثبت‌نام تلفنی صحبت کنیم تا کلاس درست
+            را با هم انتخاب کنیم.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -110,9 +111,7 @@ export default function FaqPage() {
               "
             >
               تماس با استودیو
-              <span className="tabular" dir="ltr">
-                {contact.phone.display}
-              </span>
+              <PhoneNumber />
             </a>
 
             <a

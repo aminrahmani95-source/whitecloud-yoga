@@ -112,8 +112,8 @@ export default async function TeacherPage({ params }: Props) {
           {classes.length > 0 ? (
             <>
               <p className="mt-4 max-w-2xl text-base leading-loose text-muted">
-                جلسه‌هایی که این هفته با {instructor.name} برگزار می‌شود. برای
-                آشنایی با هر سبک، روی نامش بزنید.
+                کلاس‌هایی که این هفته با {instructor.name} دارید. برای آشنایی
+                با هر سبک، روی نامش بزنید.
               </p>
 
               <ul className="mt-8 space-y-3">
@@ -161,7 +161,7 @@ export default async function TeacherPage({ params }: Props) {
                 >
                   برنامهٔ هفتگی
                 </Link>{" "}
-                بزنید تا کلاس مناسبتان را پیدا کنید.
+                بزنید تا کلاس مناسب‌تان را پیدا کنید.
               </p>
             </div>
           )}

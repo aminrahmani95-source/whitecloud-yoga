@@ -18,7 +18,8 @@ export function PageShell({
 }: {
   eyebrow?: string;
   title: string;
-  lead?: string;
+  /** مثل SectionHeading — ReactNode تا لیدِ حاوی شماره تلفن هم بشود داد */
+  lead?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -50,7 +51,7 @@ export function PageShell({
                 {title}
               </h1>
               {lead && (
-                <p className="mt-4 text-base leading-loose text-muted sm:text-lg">
+                <p className="measure mt-3 text-base leading-loose text-muted sm:text-lg">
                   {lead}
                 </p>
               )}

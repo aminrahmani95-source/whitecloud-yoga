@@ -1,5 +1,6 @@
 import { Cloud } from "@/components/brand/Cloud";
 import { Section } from "@/components/ui/Section";
+import { PhoneNumber } from "@/components/ui/PhoneNumber";
 import { contact } from "@/lib/data/contact";
 
 /**
@@ -32,15 +33,20 @@ export function Intro() {
           <span className="block text-base font-medium tracking-wide text-muted sm:text-lg">
             {contact.name}
           </span>
-          <span className="mt-3 block">جایی آرام، برای بازگشتن به خودتان</span>
+          {/*
+           * تیتر عمداً وعدهٔ حال‌وهوایی نمی‌دهد («بازگشت به خودتان» و مانند آن).
+           * بیشترِ کسانی که این صفحه را باز می‌کنند نگران یک چیزند: اینکه بدن‌شان
+           * به درد یوگا نخورد. جواب همان نگرانی، همین‌جا در تیتر می‌آید.
+           */}
+          <span className="mt-3 block">تمرینی به اندازهٔ بدن خودتان</span>
         </h1>
 
         <p className="mt-6 text-base leading-loose text-muted sm:text-lg">
           ابر سفید باشگاه بانوان است؛ در {contact.address.city}، محلهٔ{" "}
-          {contact.address.district} — اتاقی روشن و ساکت که در آن هر کسی با بدن
-          خودش تمرین می‌کند، نه با بدن کسی که کنارش ایستاده. اینجا از شما انعطاف
-          یا تجربهٔ قبلی خواسته نمی‌شود؛ فقط بیایید، زیرانداز را پهن کنید و
-          بگذارید نفس‌تان جا بیفتد.
+          {contact.address.district}. سالن روشن و ساکت است و کلاس‌ها کوچک، پس
+          مربی فرصت دارد کنار هرکدام‌تان بایستد. از شما انعطاف یا سابقهٔ تمرین
+          خواسته نمی‌شود — هر وضعیت با بلوک و کش به اندازهٔ بدن شما تنظیم می‌شود.
+          کافی است بیایید و بگذارید نفس‌تان جا بیفتد.
         </p>
 
 
@@ -86,9 +92,7 @@ export function Intro() {
             >
               <path d="M5.5 2.5H3.2c-.4 0-.7.3-.7.7C2.5 9 7 13.5 12.8 13.5c.4 0 .7-.3.7-.7v-2.3l-2.6-.9-1.3 1.3a9.4 9.4 0 01-3.5-3.5l1.3-1.3-.9-2.6z" />
             </svg>
-            <span className="tabular" dir="ltr">
-              {contact.phone.display}
-            </span>
+            <PhoneNumber />
           </a>
         </div>
       </div>
