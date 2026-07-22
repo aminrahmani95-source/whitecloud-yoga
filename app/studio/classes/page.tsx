@@ -187,9 +187,15 @@ export default function ClassesPage() {
                             const instructor = instructorById(id);
                             return (
                               <li key={id}>
+                                {/* py/-my سطح لمس را از ۲۴ به ۳۶ پیکسل می‌برد
+                                    بدون اینکه فاصلهٔ دیداری عوض شود. این
+                                    لینک‌ها در فهرست‌اند نه داخل جمله، پس
+                                    معافیت WCAG برای لینکِ درون‌متنی شامل‌شان
+                                    نمی‌شود. */}
                                 <Link
                                   href={`/studio/teachers/${id}/`}
                                   className="
+                                    -my-1.5 inline-block py-1.5
                                     font-medium text-sky-text underline underline-offset-4
                                     transition-colors duration-300 hover:text-ink
                                   "

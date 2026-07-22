@@ -4,7 +4,12 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { ClockIcon, InstagramIcon, PinIcon } from "@/components/ui/Icon";
+import {
+  ClockIcon,
+  InstagramIcon,
+  PhoneIcon,
+  PinIcon,
+} from "@/components/ui/Icon";
 import { PhoneNumber } from "@/components/ui/PhoneNumber";
 import { Intro } from "@/components/studio/Intro";
 import { News } from "@/components/studio/News";
@@ -180,11 +185,13 @@ export default function StudioHomePage() {
                   </span>
                 </p>
 
+                {/* py-1.5 سطح لمس را به ۳۶ پیکسل می‌رساند؛ mt از ۵ به ۴ آمد
+                    تا فاصلهٔ دیداری از بلوک بالایی همان بماند */}
                 <a
                   href={contact.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-x-2 text-sm font-medium text-sky-text transition-colors duration-300 hover:text-ink"
+                  className="mt-4 inline-flex items-center gap-x-2 py-1.5 text-sm font-medium text-sky-text transition-colors duration-300 hover:text-ink"
                 >
                   <ArrowStart />
                   مسیریابی روی نقشه
@@ -202,25 +209,20 @@ export default function StudioHomePage() {
                   بنویسید، دایرکت اینستاگرام هم باز است.
                 </p>
 
-                {/* در موبایل تمام‌عرض و روی هم — دکمه‌ها نباید در ۳۷۵ پیکسل بشکنند */}
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                {/*
+                  در موبایل تمام‌عرض و روی هم؛ از sm به بعد کنار هم.
+                  flex-wrap لازم است و تزئینی نیست: در ۷۶۸ پیکسل، md:grid-cols-2
+                  همین ستون را نصف می‌کند و همزمان sm:flex-row دکمه‌ها را کنار
+                  هم می‌چیند. بدون wrap، دو دکمه در آن عرض جا نمی‌شوند و از
+                  کادر بیرون می‌زنند — اندازه‌گیری شده، نه فرضی.
+                */}
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                   <a
                     href={contact.phone.href}
                     aria-label={`تماس با استودیو، ${contact.phone.display}`}
                     className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-sky px-6 py-3.5 text-base font-medium text-ink shadow-soft transition-colors duration-300 hover:bg-sky-hover sm:w-auto"
                   >
-                    <svg
-                      viewBox="0 0 16 16"
-                      className="h-4 w-4 shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M5.5 2.5H3.2c-.4 0-.7.3-.7.7C2.5 9 7 13.5 12.8 13.5c.4 0 .7-.3.7-.7v-2.3l-2.6-.9-1.3 1.3a9.4 9.4 0 01-3.5-3.5l1.3-1.3-.9-2.6z" />
-                    </svg>
+                    <PhoneIcon />
                     <PhoneNumber />
                   </a>
 

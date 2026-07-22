@@ -127,9 +127,13 @@ export default async function TeacherPage({ params }: Props) {
                     "
                   >
                     <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      {/* py/-my سطح لمس را بدون تغییر فاصلهٔ دیداری بزرگ
+                          می‌کند — نام سبک اینجا برچسبِ یک ردیف است، نه
+                          لینکی داخل جمله، پس معافیت WCAG شاملش نمی‌شود */}
                       <Link
                         href="/studio/classes/"
                         className="
+                          -my-1.5 inline-block py-1.5
                           font-medium text-sky-text underline underline-offset-4
                           transition-colors duration-300 hover:text-ink
                         "
@@ -172,7 +176,7 @@ export default async function TeacherPage({ params }: Props) {
           <Link
             href="/studio/teachers/"
             className="
-              inline-flex items-center gap-2 text-sky-text
+              -my-1.5 inline-flex items-center gap-2 py-1.5 text-sky-text
               transition-colors duration-300 hover:text-ink
             "
           >
