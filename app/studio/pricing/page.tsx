@@ -72,7 +72,7 @@ function PlanCard({ plan }: { plan: Plan }) {
       <div className="flex min-h-7 flex-wrap items-center justify-between gap-x-3 gap-y-2">
         <h3 className="text-lg font-semibold text-ink">{plan.name}</h3>
         {plan.featured && (
-          <span className="rounded-full bg-sky px-3 py-1 text-xs font-medium text-ink">
+          <span className="rounded-full bg-sky px-3 py-1 text-xs font-medium text-on-sky">
             پیشنهاد ما
           </span>
         )}
@@ -107,7 +107,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         <a
           href={contact.phone.href}
           aria-label={`تماس برای ثبت‌نام در ${plan.name} — ${contact.phone.display}`}
-          className="block rounded-full bg-sky px-5 py-3 text-center text-sm font-medium text-ink shadow-soft transition-colors duration-300 hover:bg-sky-hover"
+          className="block rounded-full bg-sky px-5 py-3 text-center text-sm font-medium text-on-sky shadow-soft transition-colors duration-300 hover:bg-sky-hover"
         >
           تماس برای ثبت‌نام
         </a>

@@ -103,7 +103,7 @@ export default function ShopPage() {
                       transition-colors duration-300
                       ${
                         product.inStock
-                          ? "bg-sky text-ink hover:bg-sky-hover"
+                          ? "bg-sky text-on-sky hover:bg-sky-hover"
                           : // برای حالت غیرفعال از opacity استفاده نمی‌کنیم؛
                             // شفافیت کنتراست را می‌شکند. متن muted روی surface
                             // همچنان ۴٫۷:۱ است و AA را رد می‌کند.

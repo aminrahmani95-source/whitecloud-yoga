@@ -148,8 +148,8 @@ export default function ClassesPage() {
                     </p>
 
                     <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
-                      {/* پُرکنندهٔ آبی همیشه متن ink می‌گیرد — قاعدهٔ ۱ */}
-                      <span className="rounded-full bg-sky px-3 py-1 text-xs font-medium text-ink">
+                      {/* پُرکنندهٔ آبی همیشه متن on-sky می‌گیرد — قاعدهٔ ۱ */}
+                      <span className="rounded-full bg-sky px-3 py-1 text-xs font-medium text-on-sky">
                         <span className="sr-only">شدت تمرین: </span>
                         {style.intensity}
                       </span>
@@ -243,7 +243,7 @@ export default function ClassesPage() {
             <Link
               href="/studio/schedule/"
               className="
-                rounded-full bg-sky px-6 py-3 font-medium text-ink
+                rounded-full bg-sky px-6 py-3 font-medium text-on-sky
                 transition-colors duration-300 hover:bg-sky-hover
               "
             >

@@ -117,11 +117,11 @@ export function CloudGate() {
                     group-hover:cloud-shadow-lift group-focus-visible:cloud-shadow-lift
                   "
                 />
-                {/* برچسب در مرکز تنهٔ ابر می‌نشیند — متن ink روی پُرکنندهٔ sky، ۶٫۶:۱.
+                {/* برچسب در مرکز تنهٔ ابر می‌نشیند — متن on-sky روی پُرکنندهٔ sky، ۵٫۸:۱.
                     فرم‌های جدید لُپ‌های بالا و پایین متقارن دارند، پس برخلاف
                     فرم قدیمیِ کف‌صاف، مرکز جرم همان مرکز کادر است و کشیدن
                     برچسب به پایین لازم نیست. */}
-                <span className="absolute inset-0 flex items-center justify-center text-lg font-semibold text-ink sm:text-xl">
+                <span className="absolute inset-0 flex items-center justify-center text-lg font-semibold text-on-sky sm:text-xl">
                   {gate.label}
                 </span>
               </span>

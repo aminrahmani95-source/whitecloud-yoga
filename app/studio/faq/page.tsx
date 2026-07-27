@@ -101,12 +101,12 @@ export default function FaqPage() {
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-            {/* پُرکنندهٔ آبی همیشه متن ink می‌گیرد — قاعدهٔ ۱ */}
+            {/* پُرکنندهٔ آبی همیشه متن on-sky می‌گیرد — قاعدهٔ ۱ */}
             <a
               href={contact.phone.href}
               className="
                 inline-flex items-center justify-center gap-2 rounded-full
-                bg-sky px-6 py-3 text-sm font-medium text-ink
+                bg-sky px-6 py-3 text-sm font-medium text-on-sky
                 transition-colors duration-300 hover:bg-sky-hover
               "
             >

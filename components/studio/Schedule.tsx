@@ -224,7 +224,7 @@ export function Schedule() {
              *
              * <button
              *   type="button"
-             *   className="mt-6 w-full rounded-full bg-sky px-5 py-3 font-medium text-ink transition-colors duration-300 hover:bg-sky-hover"
+             *   className="mt-6 w-full rounded-full bg-sky px-5 py-3 font-medium text-on-sky transition-colors duration-300 hover:bg-sky-hover"
              * >
              *   رزرو این کلاس
              * </button>

@@ -220,7 +220,7 @@ export default function StudioHomePage() {
                   <a
                     href={contact.phone.href}
                     aria-label={`تماس با استودیو، ${contact.phone.display}`}
-                    className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-sky px-6 py-3.5 text-base font-medium text-ink shadow-soft transition-colors duration-300 hover:bg-sky-hover sm:w-auto"
+                    className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-sky px-6 py-3.5 text-base font-medium text-on-sky shadow-soft transition-colors duration-300 hover:bg-sky-hover sm:w-auto"
                   >
                     <PhoneIcon />
                     <PhoneNumber />

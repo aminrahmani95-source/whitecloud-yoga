@@ -54,7 +54,7 @@ export function Intro() {
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <a
             href="#schedule"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky px-6 py-3.5 text-base font-medium text-ink shadow-soft transition-colors duration-300 hover:bg-sky-hover sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky px-6 py-3.5 text-base font-medium text-on-sky shadow-soft transition-colors duration-300 hover:bg-sky-hover sm:w-auto"
           >
             برنامهٔ کلاس‌ها را ببینید
             {/*
